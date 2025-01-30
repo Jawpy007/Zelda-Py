@@ -1,4 +1,5 @@
 import pygame
+from settings import *
 
 class Level:
     def __init__(self):
@@ -10,10 +11,21 @@ class Level:
         self.visible_sprites = pygame.sprite.Group() #Sprite Visible par le joueur exemple texture
         self.obstacles_sprites = pygame.sprite.Group() #Sprite non Visible par le joueur exemple Hit-Box
 
+        #Affiche les sprites
+        self.create_map()
+
+
+    def create_map(self):
+        for row_index, row in WORLD_MAP:
+            for col_index, col in enumerate(row):
+                x = col_index * TILESIZE
+                y = row_index * TILESIZE
+            if col == 'x':
+                Tile((x,y),[self.visible_sprites])
 
 
     def run(self):
         #Met a jour le jeu
-        pass
+        self.visible_sprites.draw(self.display_surface)
 
 
