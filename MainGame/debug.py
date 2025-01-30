@@ -1,4 +1,10 @@
 import pygame
+
+"""
+Ce fichier sert a "print" des message de debug en haut a gauche de la fenetre du jeu
+
+"""
+
 pygame.init()
 font = pygame.font.Font(None,30)
 
