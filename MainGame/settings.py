@@ -3,6 +3,7 @@ WIDTH    = 1280	#Largeur
 HEIGTH   = 720 #Longueur
 FPS      = 60 #IPS
 TILESIZE = 64 # dimension des sprites
+PLAYERSPEED=5
 
 """
 Ci dessous la carte, voici la legende :
