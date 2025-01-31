@@ -78,7 +78,6 @@ class Player(pygame.sprite.Sprite):
 	def jumping(self):
 		if self.injump:
 			self.current_time=pygame.time.get_ticks()
-			print("jkj")
 			if self.current_time-self.jumping_time <= JUMPTIME:
 				self.direction.y= -1
 			else:
