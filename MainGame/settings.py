@@ -4,7 +4,7 @@ HEIGTH   = 720 #Longueur
 FPS      = 60 #IPS
 TILESIZE = 64 # dimension des sprites
 PLAYERSPEED=5
-JUMPTIME=600
+JUMPTIME=200
 JUMPMAX= 2
 """
 Ci dessous la carte, voici la legende :
