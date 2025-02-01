@@ -1,5 +1,6 @@
 import pygame
-class entity(pygame.sprite.Sprite):
+from settings import JUMPMAX,JUMPTIME
+class Entity(pygame.sprite.Sprite):
     def __init__(self,groups):
         super().__init__(groups)
         self.frame_index = 0
