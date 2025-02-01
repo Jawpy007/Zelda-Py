@@ -15,14 +15,16 @@ class Player(pygame.sprite.Sprite):
 		self.jumping_time=pygame.time.get_ticks()
 		self.current_time=pygame.time.get_ticks()
 		self.nbjump=JUMPMAX
+		self.player_running=False
 
 
 		self.obstacle_sprites = obstacle_sprites
 
 	
-	def input(self): #récupération des input du joueur
+	def input(self): 
+		#récupération des input du joueur
 		keys = pygame.key.get_pressed()
-
+		
 		# movement input
 		if not(self.injump) and self.nbjump>0:
 			if keys[pygame.K_SPACE]:
@@ -34,7 +36,10 @@ class Player(pygame.sprite.Sprite):
 		elif not(self.current_time-self.jumping_time <= JUMPTIME):
 			self.direction.y = 1
 		
-
+		if keys[pygame.K_LSHIFT]:
+			self.player_running=True
+		else:
+			self.player_running=False
 
 		if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
 			self.direction.x = 1
@@ -47,9 +52,12 @@ class Player(pygame.sprite.Sprite):
 		if self.direction.magnitude() != 0: #obligatoire car un vecteur de 0 ne peut pas etre normalize()
 			self.direction = self.direction.normalize()
 
-		self.rect.x += self.direction.x * speed
+		self.rect.x += self.direction.x * speed*2 if self.player_running else self.direction.x * speed
 		self.collision('horizontal')
-		self.rect.y += self.direction.y * speed
+		if self.direction.y>0:
+			self.rect.y += self.direction.y * speed*2
+		if self.direction.y<0:
+			self.rect.y += self.direction.y * (speed*2)
 		self.collision('vertical')
 		#self.rect.center = self.direction * speed
 	
