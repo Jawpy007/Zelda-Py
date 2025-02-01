@@ -3,9 +3,29 @@ WIDTH    = 1280	#Largeur
 HEIGTH   = 720 #Longueur
 FPS      = 60 #IPS
 TILESIZE = 64 # dimension des sprites
+
+#Player setup
 PLAYERSPEED=5
 JUMPTIME=200
 JUMPMAX= 2
+
+#ui setup
+UI_FONT="graphics/font/joystix.ttf"
+UI_FONT_SIZE=18
+
+ITEM_BOX_SIZE=80
+
+HEALTH_BAR_HEIGHT=20
+HEALTH_BAR_WIDTH=200
+
+ENERGY_BAR_HEIGHT=20
+ENERGY_BAR_WIDTH=140
+
+#color setup
+
+BLACK=(255,255,255)
+
+#map setup
 """
 Ci dessous la carte, voici la legende :
 
@@ -35,3 +55,4 @@ WORLD_MAP = [
 ['x',' ',' ','x','x','x',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','x'],
 ['x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'],
 ]
+
