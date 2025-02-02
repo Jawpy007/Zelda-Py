@@ -14,11 +14,11 @@ BASE_PLAYER_XP=0
 
 #ui main menu
 
-PLAY_BUT_SIZE= {"x": 200, "y": 100}
+PLAY_BUT_SIZE= {"x": 250, "y": 30}
 
 #ui setup world
-UI_FONT="graphics/font/joystix.ttf"
-UI_FONT_SIZE=18
+UI_FONT="graphics/font/times.ttf"
+UI_FONT_SIZE=30
 
 ITEM_BOX_SIZE=80
 

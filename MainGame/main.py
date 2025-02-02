@@ -16,6 +16,8 @@ class Game:
 		self.all_level_dic={"world":self.level_world,"main_menu":self.level_main_menu}
 
 		self.selected_level=self.all_level_dic["main_menu"]
+		self.main_menu_background=pygame.image.load("graphics/background/main_menu_bg.png").convert()
+		self.main_menu_background = pygame.transform.scale(self.main_menu_background, (WIDTH, HEIGTH))
 	
 	def change_level(self,level_name):
 		self.selected_level=self.all_level_dic[level_name]
@@ -30,7 +32,10 @@ class Game:
 					sys.exit()  # Ferme proprement le programme
 			
 			# Rafraîchissement de l'affichage
-			self.screen.fill('black')  # Remplit l'écran de noir pour éviter les traces des images précédentes
+			if self.selected_level==self.level_main_menu:
+				self.screen.blit(self.main_menu_background, (0, 0))
+			else:
+				self.screen.fill('black')  # Remplit l'écran de noir pour éviter les traces des images précédentes
 			self.selected_level.run()   # Met à jour et affiche le niveau de jeu
 			pygame.display.update()  # Met à jour l'affichage
 			self.clock.tick(FPS)  # Régule la vitesse d'exécution du jeu pour ne pas dépasser le nombre de FPS défini
