@@ -33,9 +33,11 @@ class Level:
         
         }
         graphics= {
-            'grass': import_folder('graphics/grass')
+            'grass': import_folder('graphics/grass'),
+            'objects' : import_folder('graphics/objects')
         }
-        print(graphics)
+        
+        
         for style,layout in layouts.items():
             for row_index, row in enumerate(layout):
                 for col_index, col in enumerate(row):
@@ -54,14 +56,8 @@ class Level:
 
                         if style == "object":
                             #créer un objet
-                            pass
-
-
-                """if col == 'x':
-                    Tile((x,y),[self.visible_sprites, self.obstacles_sprites])
-                
-                if col == "p":
-                    self.player = Player((x,y),[self.visible_sprites], self.obstacles_sprites)"""
+                            surf = graphics['objects'][int(col)]
+                            Tile((x,y),[self.visible_sprites, self.obstacles_sprites], 'objects',surf)
        
        
        
