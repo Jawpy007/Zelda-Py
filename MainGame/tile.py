@@ -6,5 +6,8 @@ class Tile(pygame.sprite.Sprite):
         super().__init__(groups) #Initialisation de la classe parent
         self.sprite_type = sprite_type
         self.image = surface
-        self.rect = self.image.get_rect(topleft = pos)
+        if sprite_type == 'objects':
+            self.rect = self.image.get_rect(topleft = (pos[0],pos[1] - TILESIZE))
+        else:
+            self.rect = self.image.get_rect(topleft = pos)
 
