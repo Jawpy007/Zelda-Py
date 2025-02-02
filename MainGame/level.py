@@ -55,13 +55,6 @@ class Level:
                         if style == "object":
                             #créer un objet
                             pass
-                
-
-
-
-
-
-
 
 
                 """if col == 'x':

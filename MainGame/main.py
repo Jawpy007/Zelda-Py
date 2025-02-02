@@ -1,29 +1,33 @@
-import pygame, sys #Bibliotheque pygame pour la gestion de TOUT le jeu et sys pour gerer la fenetre
-from settings import * #Import des settings predefinis voir le fichier concerné
-from level import *
+import pygame, sys  # Bibliothèque pygame pour gérer le jeu, et sys pour gérer la fermeture de la fenêtre
+from settings import *  # Importation des paramètres prédéfinis
+from level import *  # Importation du module Level, qui gère la carte et les entités
+
+# Définition de la classe Game, qui gère l'ensemble du jeu
 class Game:
-	def __init__(self):
-		# general setup
-		pygame.init() #Initialisation du jeu
-		self.screen = pygame.display.set_mode((WIDTH,HEIGTH)) #Affichage de l'écran
-		pygame.display.set_caption('Zelda NSI') #Titre de la fenetre
-		self.clock = pygame.time.Clock() #variable qui stocke le Temps du jeu
-		self.level = Level()
+    def __init__(self):
+        # Initialisation générale
+        pygame.init()  # Initialise tous les modules pygame
+        self.screen = pygame.display.set_mode((WIDTH, HEIGTH))  # Crée une fenêtre de jeu avec les dimensions définies
+        pygame.display.set_caption('Zelda NSI')  # Définit le titre de la fenêtre
+        self.clock = pygame.time.Clock()  # Création d'un objet pour gérer le temps et le taux de rafraîchissement
+        self.level = Level()  # Création d'une instance de la classe Level, qui gère la carte et les entités
 
-	def run(self):
+    # Fonction principale du jeu
+    def run(self):
+        # Boucle principale pour maintenir le jeu en cours d'exécution
+        while True:
+            for event in pygame.event.get():  # Vérifie tous les événements de pygame
+                if event.type == pygame.QUIT:  # Si l'utilisateur ferme la fenêtre
+                    pygame.quit()  # Quitte pygame
+                    sys.exit()  # Ferme proprement le programme
+            
+            # Rafraîchissement de l'affichage
+            self.screen.fill('black')  # Remplit l'écran de noir pour éviter les traces des images précédentes
+            self.level.run()  # Met à jour et affiche le niveau de jeu
+            pygame.display.update()  # Met à jour l'affichage
+            self.clock.tick(FPS)  # Régule la vitesse d'exécution du jeu pour ne pas dépasser le nombre de FPS défini
 
-		#Boucle pour pouvoir quitter le jeu
-		while True:
-			for event in pygame.event.get():
-				if event.type == pygame.QUIT:
-					pygame.quit()
-					sys.exit()
-
-			#Parametre d'affichage assez explicite
-			self.screen.fill('black')
-			self.level.run()
-			pygame.display.update()
-			self.clock.tick(FPS)
+# Vérifie si ce fichier est exécuté en tant que programme principal
 if __name__ == '__main__':
-	game = Game()
-	game.run()
+    game = Game()  # Crée une instance du jeu
+    game.run()  # Lance la boucle du jeu
