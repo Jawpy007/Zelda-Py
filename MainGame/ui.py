@@ -58,6 +58,7 @@ class UI:
 
 	def input(self):
 		mouse=pygame.mouse.get_pressed()
+		keys=pygame.key.get_pressed()
 		cliquedroit=mouse[0]
 
 		if self.level_type=="main_menu":
@@ -69,6 +70,9 @@ class UI:
 				if self.quit_but.collidepoint(mouse_cord):
 					pygame.quit()  # Quitte pygame
 					sys.exit()  # Ferme proprement le programme
+		if self.level_type=="world":
+			if keys[pygame.K_ESCAPE]:
+				self.game.change_level("main_menu")
 
 
 	def display(self,player=None):
@@ -79,6 +83,7 @@ class UI:
 
 			for elem_de_bar in self.dico_bar.keys():
 				self.draw_bar(self.dico_bar[elem_de_bar])
+			self.input()
 		elif self.level_type=="main_menu":
 
 			for but in self.dico_buts.values():
