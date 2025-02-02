@@ -4,6 +4,7 @@ from tile import Tile
 
 class Level:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     def __init__(self):
         
         #Pour avoir la carte sur lequel le joueur ce déplace
@@ -59,6 +60,34 @@ class Level:
 					x = col_index * TILESIZE  # Conversion des indices en coordonnées
 					y = row_index * TILESIZE
 
+=======
+	def __init__(self, level_type,game):
+		
+		self.game=game
+		self.level_type=level_type
+
+		# Récupération de la surface d'affichage du jeu
+		self.display_surface = pygame.display.get_surface()
+
+		# Groupes de sprites
+		self.visible_sprites = YSortCameraGroup()  # Sprites visibles (ex: textures, joueur)
+		self.obstacles_sprites = pygame.sprite.Group()  # Sprites obstacles (ex: hit-box, murs)
+
+		# Génération de la carte
+		self.create_map()
+
+		# Interface utilisateur
+		self.ui = UI(self.level_type,self.game)
+
+	# Création de la carte du jeu
+	def create_map(self):
+		if self.level_type=="world":
+			for row_index, row in enumerate(WORLD_MAP):  # Parcours des lignes de la carte
+				for col_index, col in enumerate(row):  # Parcours des colonnes de la carte
+					x = col_index * TILESIZE  # Conversion des indices en coordonnées
+					y = row_index * TILESIZE
+
+>>>>>>> Stashed changes
 					if col == 'x':  # Si on trouve un mur
 						Tile((x, y), [self.visible_sprites, self.obstacles_sprites])
 				
@@ -98,5 +127,9 @@ class YSortCameraGroup(pygame.sprite.Group):
 		# Dessine chaque sprite en appliquant le décalage
 		for sprite in self.sprites():
 			offset_pos = sprite.rect.topleft - self.offset
+<<<<<<< Updated upstream
+			self.display_surface.blit(sprite.image, offset_pos)
+>>>>>>> Stashed changes
+=======
 			self.display_surface.blit(sprite.image, offset_pos)
 >>>>>>> Stashed changes
