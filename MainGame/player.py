@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from support import import_folder
 
 # Définition de la classe Player qui hérite de pygame.sprite.Sprite
 class Player(pygame.sprite.Sprite):
@@ -18,6 +19,13 @@ class Player(pygame.sprite.Sprite):
 		self.nbjump=JUMPMAX
 		self.player_running=False
 
+		self.player_status=None
+
+
+
+		self.attacking=False
+		self.attack_time=None
+
 
 		self.obstacle_sprites = obstacle_sprites
 
@@ -27,6 +35,16 @@ class Player(pygame.sprite.Sprite):
 	#	print(self.stats_updates("health", -10))
 	#	print(self.stats_updates("energy", 10))
 	#	print(self.stats_updates("xp", -10))
+
+	def import_player_assets(self):
+		character_path="graphics/player/"
+		self.dic_animations={'up': [],'down': [],'left': [],'right': [],
+			'right_idle':[],'left_idle':[],'up_idle':[],'down_idle':[],
+			'right_attack':[],'left_attack':[],'up_attack':[],'down_attack':[]}
+
+		for animation in self.dic_animations.keys():
+			full_path = character_path + animation
+			self.dic_animations[animation] = import_folder(full_path)
 
 	
 	def input(self): 
@@ -56,11 +74,18 @@ class Player(pygame.sprite.Sprite):
 		else:
 			self.direction.x = 0
 
+		#attack input
+		if keys[pygame.K_SPACE] and not self.attacking:
 
+			self.attacking=True
+			self.attack_time=pygame.time.get_ticks()
 
+		#magic input
+		if keys[pygame.K_e] and not self.attacking:
 
+			self.attacking=True
+			self.attack_time=pygame.time.get_ticks()
 
-	
 	def move(self,speed):
 		if self.direction.magnitude() != 0: #obligatoire car un vecteur de 0 ne peut pas etre normalize()
 			self.direction = self.direction.normalize()
@@ -83,7 +108,6 @@ class Player(pygame.sprite.Sprite):
 					if self.direction.x < 0: # bouger a gauche
 						self.rect.left = sprite.rect.right
 						
-
 		if direction == 'vertical':
 			for sprite in self.obstacle_sprites:
 				if sprite.rect.colliderect(self.rect):
@@ -94,7 +118,12 @@ class Player(pygame.sprite.Sprite):
 							self.nbjump=JUMPMAX
 					if self.direction.y < 0: # bouger en haut
 						self.rect.top = sprite.rect.bottom
-						
+
+	def cooldowns(self):
+		self.current_time=pygame.time.get_ticks()
+		if self.attacking:
+			if self.current_time - self.attack_time >= ATTACK_COOLDOWN:
+				self.attacking=False
 
 	def jumping(self):
 		if self.injump:
@@ -103,8 +132,7 @@ class Player(pygame.sprite.Sprite):
 				self.direction.y= -1
 			else:
 				self.injump=False
-
-			
+		
 	def stats_updates(self,stats_name,value_update, max_value=None): #si max value none on change pas le max
 		if max_value!=None:
 			self.stats[stats_name][1]=max_value
@@ -143,9 +171,12 @@ class Player(pygame.sprite.Sprite):
 
 	def update(self):
 		self.input()
+		self.cooldowns()
 		self.jumping()
 		self.move(self.speed)
 
+
+	
 class player_inventory:
 	def __init__(self,Player,items_sprites):
 		self.item_dic={}
