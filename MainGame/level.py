@@ -3,39 +3,6 @@ from settings import *
 from tile import Tile
 
 class Level:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    def __init__(self):
-        
-        #Pour avoir la carte sur lequel le joueur ce déplace
-        self.display_surface = pygame.display.get_surface()
-
-        #Groupe de sprite 
-        self.visible_sprites = pygame.sprite.Group() #Sprite Visible par le joueur exemple texture
-        self.obstacles_sprites = pygame.sprite.Group() #Sprite non Visible par le joueur exemple Hit-Box
-
-        #Affiche les sprites
-        self.create_map()
-
-
-    def create_map(self):
-        for row_index, row in enumerate(WORLD_MAP):
-            for col_index, col in enumerate(row):
-                x = col_index * TILESIZE
-                y = row_index * TILESIZE
-
-                if col == 'x':
-                    Tile((x,y),[self.visible_sprites])
-
-
-    def run(self):
-        #Met a jour le jeu
-        self.visible_sprites.draw(self.display_surface)
-
-
-=======
 	def __init__(self, level_type,game):
 		
 		self.game=game
@@ -61,91 +28,6 @@ class Level:
 				for col_index, col in enumerate(row):  # Parcours des colonnes de la carte
 					x = col_index * TILESIZE  # Conversion des indices en coordonnées
 					y = row_index * TILESIZE
-
-=======
-	def __init__(self, level_type,game):
-		
-		self.game=game
-		self.level_type=level_type
-
-		# Récupération de la surface d'affichage du jeu
-		self.display_surface = pygame.display.get_surface()
-
-		# Groupes de sprites
-		self.visible_sprites = YSortCameraGroup()  # Sprites visibles (ex: textures, joueur)
-		self.obstacles_sprites = pygame.sprite.Group()  # Sprites obstacles (ex: hit-box, murs)
-
-		# Génération de la carte
-		self.create_map()
-
-		# Interface utilisateur
-		self.ui = UI(self.level_type,self.game)
-
-	# Création de la carte du jeu
-	def create_map(self):
-		if self.level_type=="world":
-			for row_index, row in enumerate(WORLD_MAP):  # Parcours des lignes de la carte
-				for col_index, col in enumerate(row):  # Parcours des colonnes de la carte
-					x = col_index * TILESIZE  # Conversion des indices en coordonnées
-					y = row_index * TILESIZE
-
->>>>>>> Stashed changes
-=======
-	def __init__(self, level_type,game):
-		
-		self.game=game
-		self.level_type=level_type
-
-		# Récupération de la surface d'affichage du jeu
-		self.display_surface = pygame.display.get_surface()
-
-		# Groupes de sprites
-		self.visible_sprites = YSortCameraGroup()  # Sprites visibles (ex: textures, joueur)
-		self.obstacles_sprites = pygame.sprite.Group()  # Sprites obstacles (ex: hit-box, murs)
-
-		# Génération de la carte
-		self.create_map()
-
-		# Interface utilisateur
-		self.ui = UI(self.level_type,self.game)
-
-	# Création de la carte du jeu
-	def create_map(self):
-		if self.level_type=="world":
-			for row_index, row in enumerate(WORLD_MAP):  # Parcours des lignes de la carte
-				for col_index, col in enumerate(row):  # Parcours des colonnes de la carte
-					x = col_index * TILESIZE  # Conversion des indices en coordonnées
-					y = row_index * TILESIZE
-
->>>>>>> Stashed changes
-=======
-	def __init__(self, level_type,game):
-		
-		self.game=game
-		self.level_type=level_type
-
-		# Récupération de la surface d'affichage du jeu
-		self.display_surface = pygame.display.get_surface()
-
-		# Groupes de sprites
-		self.visible_sprites = YSortCameraGroup()  # Sprites visibles (ex: textures, joueur)
-		self.obstacles_sprites = pygame.sprite.Group()  # Sprites obstacles (ex: hit-box, murs)
-
-		# Génération de la carte
-		self.create_map()
-
-		# Interface utilisateur
-		self.ui = UI(self.level_type,self.game)
-
-	# Création de la carte du jeu
-	def create_map(self):
-		if self.level_type=="world":
-			for row_index, row in enumerate(WORLD_MAP):  # Parcours des lignes de la carte
-				for col_index, col in enumerate(row):  # Parcours des colonnes de la carte
-					x = col_index * TILESIZE  # Conversion des indices en coordonnées
-					y = row_index * TILESIZE
-
->>>>>>> Stashed changes
 					if col == 'x':  # Si on trouve un mur
 						Tile((x, y), [self.visible_sprites, self.obstacles_sprites])
 				
@@ -162,19 +44,18 @@ class Level:
 			self.visible_sprites.update()  # Met à jour les sprites
 			self.ui.display(self.player)  # Affiche l'interface utilisateur
 		if self.level_type=="main_menu":
-			self.ui.display()
+			self.ui.display()# Gestion de l'affichage et du tri des sprites (ex: effet de profondeur)
 
-# Gestion de l'affichage et du tri des sprites (ex: effet de profondeur)
 class YSortCameraGroup(pygame.sprite.Group):
 	def __init__(self):
-		
-		# Initialisation du groupe de sprites
-		super().__init__()
-		self.display_surface = pygame.display.get_surface()
-		self.half_width = self.display_surface.get_size()[0] // 2  # Moitié de la largeur de l'écran
-		self.half_height = self.display_surface.get_size()[1] // 2  # Moitié de la hauteur de l'écran
-		self.offset = pygame.math.Vector2()  # Décalage pour le suivi du joueur
-   
+	
+	# Initialisation du groupe de sprites
+	super().__init__()
+	self.display_surface = pygame.display.get_surface()
+	self.half_width = self.display_surface.get_size()[0] // 2  # Moitié de la largeur de l'écran
+	self.half_height = self.display_surface.get_size()[1] // 2  # Moitié de la hauteur de l'écran
+	self.offset = pygame.math.Vector2()  # Décalage pour le suivi du joueur
+
 	# Dessin des sprites en tenant compte du suivi caméra
 	def custom_draw(self, player):
 		
@@ -185,17 +66,4 @@ class YSortCameraGroup(pygame.sprite.Group):
 		# Dessine chaque sprite en appliquant le décalage
 		for sprite in self.sprites():
 			offset_pos = sprite.rect.topleft - self.offset
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 			self.display_surface.blit(sprite.image, offset_pos)
->>>>>>> Stashed changes
-=======
-			self.display_surface.blit(sprite.image, offset_pos)
->>>>>>> Stashed changes
-=======
-			self.display_surface.blit(sprite.image, offset_pos)
->>>>>>> Stashed changes
-=======
-			self.display_surface.blit(sprite.image, offset_pos)
->>>>>>> Stashed changes

@@ -1,22 +1,8 @@
 import pygame
 from settings import *
 
+# Définition de la classe Player qui hérite de pygame.sprite.Sprite
 class Player(pygame.sprite.Sprite):
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    def __init__(self,pos,groups):
-        super.__init__(groups) #Initialisation de la classe parent
-        self.image = pygame.image.load('../graphics/test/player.png')
-        self.rect = self.image.get_rect(topleft = pos)
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	def __init__(self,pos,groups, obstacle_sprites):
 		super().__init__(groups) #Initialisation de la classe parent
 
@@ -173,14 +159,3 @@ class collectable_items(pygame.sprite.Sprite):
 
         self.image = pygame.image.load('graphics/test/rock.png')
         self.rect = self.image.get_rect(topleft = pos)
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
