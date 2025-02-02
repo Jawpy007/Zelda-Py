@@ -7,12 +7,16 @@ TILESIZE = 64 # dimension des sprites
 #Player setup
 PLAYERSPEED=5
 JUMPTIME=200
-JUMPMAX= 2000
+JUMPMAX= 2
 BASE_PLAYER_HEALTH=100
-BASE_PLAYER_ENERGIE=100
+BASE_PLAYER_ENERGY=100
 BASE_PLAYER_XP=0
 
-#ui setup
+#ui main menu
+
+PLAY_BUT_SIZE= {"x": 200, "y": 100}
+
+#ui setup world
 UI_FONT="graphics/font/joystix.ttf"
 UI_FONT_SIZE=18
 
@@ -73,6 +77,3 @@ monster_data = {
 	'raccoon': {'health': 300,'exp':250,'damage':40,'attack_type': 'claw',  'attack_sound':'audio/attack/claw.wav','speed': 2, 'resistance': 3, 'attack_radius': 120, 'notice_radius': 400},
 	'spirit': {'health': 100,'exp':110,'damage':8,'attack_type': 'thunder', 'attack_sound':'audio/attack/fireball.wav', 'speed': 4, 'resistance': 3, 'attack_radius': 60, 'notice_radius': 350},
 	'bamboo': {'health': 70,'exp':120,'damage':6,'attack_type': 'leaf_attack', 'attack_sound':'audio/attack/slash.wav', 'speed': 3, 'resistance': 3, 'attack_radius': 50, 'notice_radius': 300}}
-
-
-
