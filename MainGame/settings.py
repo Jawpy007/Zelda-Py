@@ -4,6 +4,44 @@ HEIGTH   = 720 #Longueur
 FPS      = 60 #IPS
 TILESIZE = 64 # dimension des sprites
 
+<<<<<<< Updated upstream
+=======
+#Player setup
+PLAYERSPEED=5
+JUMPTIME=200
+JUMPMAX= 2
+BASE_PLAYER_HEALTH=100
+BASE_PLAYER_ENERGY=100
+BASE_PLAYER_XP=0
+
+#ui main menu
+
+PLAY_BUT_SIZE= {"x": 200, "y": 100}
+
+#ui setup world
+UI_FONT="graphics/font/joystix.ttf"
+UI_FONT_SIZE=18
+
+ITEM_BOX_SIZE=80
+
+HEALTH_BAR_HEIGHT=20
+HEALTH_BAR_WIDTH=200
+
+XP_BAR_HEIGHT=20
+XP_BAR_WIDTH=200
+
+ENERGY_BAR_HEIGHT=20
+ENERGY_BAR_WIDTH=200
+
+#color setup
+
+GREEN=(0,255,0)
+BLUE=(0,0,255)
+BLUEXP=(0,0,100)
+YELLOW=(255,255,0)
+
+#map setup
+>>>>>>> Stashed changes
 """
 Ci dessous la carte, voici la legende :
 
